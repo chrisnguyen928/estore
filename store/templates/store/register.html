@@ -1,0 +1,25 @@
+{% extends 'store/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %} <!-- everything under here goes into the block content in the base template -->
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %} <!-- this line is for added security measure -->
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">
+                    Join Today
+                </legend>
+                {{ form|crispy }} <!-- prints out form (form.as_p renders form in paragraph text), got rid of .as_p because crispy form formats for us-->
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit"> <!-- submit button -->
+                    Sign Up
+                </button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Already have an account? <a class="ml-2" href="{% url 'login' %}"> Sign In </a>
+            </small>
+        </div>
+    </div>
+{% endblock content%}
